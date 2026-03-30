@@ -8,9 +8,10 @@ import MagneticButton from '@/components/MagneticButton'
 
 export default function Home() {
   const featured = [
-    books.find(b => b.slug === 'du-chaos-nait-une-etoile'),   // Juin 2026
-    books.find(b => b.slug === 'mon-petit-livre-anti-stress'), // Août 2026
-    books.find(b => b.slug === 'les-memoires-reliees'),        // Novembre 2026
+    books.find(b => b.slug === 'sur-les-hauteurs-des-chutes-du-niagara'), // Disponible
+    books.find(b => b.slug === 'du-chaos-nait-une-etoile'),                // Juin 2026
+    books.find(b => b.slug === 'mon-petit-livre-anti-stress'),             // Août 2026
+    books.find(b => b.slug === 'les-memoires-reliees'),                    // Novembre 2026
   ].filter(Boolean) as typeof books
 
   return (
@@ -27,11 +28,31 @@ export default function Home() {
           <div className="flex-1 h-px bg-ink/15" />
         </div>
 
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-10">
+        <div className="max-w-5xl mx-auto px-6 overflow-hidden">
+          {/* Slider horizontal — scroll natif, snap sur chaque carte */}
+          <div
+            className="flex gap-5 overflow-x-auto pb-4"
+            style={{
+              scrollSnapType: 'x mandatory',
+              WebkitOverflowScrolling: 'touch',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}
+          >
             {featured.map((book) => (
-              <AnimatedBookCard key={book.slug} book={book} />
+              <div
+                key={book.slug}
+                style={{
+                  flex: '0 0 72vw',
+                  maxWidth: '260px',
+                  scrollSnapAlign: 'start',
+                }}
+              >
+                <AnimatedBookCard book={book} />
+              </div>
             ))}
+            {/* Espace final pour voir qu'il y a un suivant */}
+            <div style={{ flex: '0 0 1rem' }} />
           </div>
 
           <div className="text-center mt-12">
