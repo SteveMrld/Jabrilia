@@ -7,9 +7,11 @@ import AnimatedBookCard from '@/components/AnimatedBookCard'
 import MagneticButton from '@/components/MagneticButton'
 
 export default function Home() {
-  const featured = books.filter(b =>
-    ['du-chaos-nait-une-etoile', 'mon-petit-livre-anti-stress', 'les-memoires-reliees'].includes(b.slug)
-  )
+  const featured = [
+    books.find(b => b.slug === 'du-chaos-nait-une-etoile'),   // Juin 2026
+    books.find(b => b.slug === 'mon-petit-livre-anti-stress'), // Août 2026
+    books.find(b => b.slug === 'les-memoires-reliees'),        // Novembre 2026
+  ].filter(Boolean) as typeof books
 
   return (
     <>
@@ -59,10 +61,11 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-paper to-transparent" />
           </div>
           <div>
-            <span className="font-sans text-[10px] tracking-[0.35em] uppercase text-gold">La maison</span>
+            <span className="font-sans text-[11px] tracking-[0.4em] uppercase text-gold block mb-3">La maison</span>
+            <div className="w-8 h-px bg-gold mb-6" />
             <h2
-              className="font-serif font-light text-ink mt-5 mb-7 leading-tight"
-              style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)' }}
+              className="font-serif font-light text-ink mb-7 leading-tight"
+              style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.8rem)' }}
             >
               Un éditeur indépendant au service des voix singulières
             </h2>
