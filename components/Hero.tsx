@@ -13,58 +13,44 @@ const VIDEOS = [
   'https://res.cloudinary.com/dnbyi8fw6/video/upload/share427370869461509158_tbzou8.mp4',
 ]
 
+const PLAY_DURATION = 8000 // ms avant switch
+const FADE_DURATION = 1500 // ms de crossfade
+
 export default function Hero() {
-  const heroRef = useRef<HTMLElement>(null)
-  const imgRef = useRef<HTMLDivElement>(null)
+  const heroRef    = useRef<HTMLElement>(null)
+  const imgRef     = useRef<HTMLDivElement>(null)
   const eyebrowRef = useRef<HTMLParagraphElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
+  const titleRef   = useRef<HTMLHeadingElement>(null)
   const taglineRef = useRef<HTMLParagraphElement>(null)
-  const ctaRef = useRef<HTMLDivElement>(null)
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const ctaRef     = useRef<HTMLDivElement>(null)
+  const scrollRef  = useRef<HTMLDivElement>(null)
+  const vid0Ref    = useRef<HTMLVideoElement>(null)
+  const vid1Ref    = useRef<HTMLVideoElement>(null)
 
-  const vid0Ref = useRef<HTMLVideoElement>(null)
-  const vid1Ref = useRef<HTMLVideoElement>(null)
-  const [active, setActive] = useState(0)
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // activeIndex contrôle uniquement quelle vidéo est au premier plan via CSS
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  // Crossfade entre les deux vidéos
+  // Crossfade — piloté uniquement par React state, pas de style DOM direct
   useEffect(() => {
-    const FADE_DURATION = 1500  // ms de fondu
-    const PLAY_DURATION = 8000  // ms d'affichage par vidéo
+    const vidRefs = [vid0Ref, vid1Ref]
 
-    const refs = [vid0Ref, vid1Ref]
+    // Précharge et démarre les deux
+    vidRefs.forEach((ref) => {
+      const el = ref.current
+      if (!el) return
+      el.muted = true
+      el.loop = true
+      el.play().catch(() => {})
+    })
 
-    const switchTo = (next: number) => {
-      const prev = next === 0 ? 1 : 0
-      const nextEl = refs[next].current
-      const prevEl = refs[prev].current
-      if (!nextEl || !prevEl) return
+    const interval = setInterval(() => {
+      setActiveIndex(prev => prev === 0 ? 1 : 0)
+    }, PLAY_DURATION)
 
-      nextEl.currentTime = 0
-      nextEl.play().catch(() => {})
-
-      // Fade in next, fade out prev
-      nextEl.style.transition = `opacity ${FADE_DURATION}ms ease`
-      prevEl.style.transition = `opacity ${FADE_DURATION}ms ease`
-      nextEl.style.opacity = '1'
-      prevEl.style.opacity = '0'
-
-      setActive(next)
-      timerRef.current = setTimeout(() => switchTo(next === 0 ? 1 : 0), PLAY_DURATION)
-    }
-
-    // Démarrage
-    const v0 = vid0Ref.current
-    const v1 = vid1Ref.current
-    if (v0) { v0.style.opacity = '1'; v0.play().catch(() => {}) }
-    if (v1) { v1.style.opacity = '0' }
-
-    timerRef.current = setTimeout(() => switchTo(1), PLAY_DURATION)
-
-    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
+    return () => clearInterval(interval)
   }, [])
 
-  // Animations GSAP d'entrée
+  // GSAP — animations d'entrée + parallax
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
@@ -73,10 +59,13 @@ export default function Hero() {
       if (titleEl) {
         const text = titleEl.textContent || ''
         titleEl.innerHTML = text.split('').map((char, i) =>
-          `<span class="inline-block overflow-hidden"><span class="inline-block char-${i}">${char === '.' ? `<span class="text-gold">.</span>` : char}</span></span>`
+          `<span class="inline-block overflow-hidden">` +
+          `<span class="inline-block char-${i}">` +
+          `${char === '.' ? '<span class="text-gold">.</span>' : char}` +
+          `</span></span>`
         ).join('')
         const chars = titleEl.querySelectorAll<HTMLElement>('span > span')
-        tl.fromTo(chars, { y: '120%' }, { y: 0, duration: 1.2, stagger: 0.04, ease: 'power4.out' }, 0.2)
+        tl.fromTo(chars, { y: '120%' }, { y: 0, duration: 1.2, stagger: 0.04 }, 0.2)
       }
 
       tl.fromTo(eyebrowRef.current,
@@ -115,18 +104,21 @@ export default function Hero() {
   return (
     <section ref={heroRef} className="relative h-screen min-h-[680px] flex items-center justify-center overflow-hidden">
 
-      {/* Vidéos en crossfade */}
+      {/* Vidéos superposées — crossfade via opacity CSS contrôlée par React state */}
       <div ref={imgRef} className="absolute inset-0 scale-105">
         {VIDEOS.map((src, i) => (
           <video
             key={src}
             ref={i === 0 ? vid0Ref : vid1Ref}
             muted
-            loop={false}
+            loop
             playsInline
             preload="auto"
             className="absolute inset-0 w-full h-full object-cover"
-            style={{ opacity: 0, transition: 'opacity 1.5s ease' }}
+            style={{
+              opacity: activeIndex === i ? 0.45 : 0,
+              transition: `opacity ${FADE_DURATION}ms ease`,
+            }}
           >
             <source src={src} type="video/mp4" />
           </video>
@@ -194,5 +186,3 @@ export default function Hero() {
     </section>
   )
 }
-
-
