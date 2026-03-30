@@ -35,9 +35,8 @@ export default function AnimatedBookCard({ book }: { book: Book }) {
         ref={cardRef}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 800 }}
+        style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 800, background: '#EAE4D8' }}
         className="relative overflow-hidden aspect-[2/3] mb-5"
-        style={{ background: '#EAE4D8' }}
       >
         {/* Cover image */}
         <motion.div
