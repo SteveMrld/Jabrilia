@@ -8,7 +8,7 @@ import ScrollReveal from '@/components/ScrollReveal'
 import MagneticButton from '@/components/MagneticButton'
 
 export default function Home() {
-  const featured = books.slice(0, 3)
+  const featured = books.slice(0, 4)
 
   return (
     <>
@@ -33,7 +33,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-28">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
             {featured.map((book, i) => (
               <ScrollReveal key={book.slug} delay={i * 100}>
                 <AnimatedBookCard book={book} />
@@ -57,10 +57,10 @@ export default function Home() {
       </section>
 
       {/* ── À propos teaser ──────────────────────────────────────── */}
-      <section className="py-36 px-6 bg-ink border-t border-border overflow-hidden">
+      <section className="py-36 px-6 bg-paper border-t border-ink/10 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
-          {/* Image — femme marchant vers la lumière */}
+          {/* Image */}
           <ScrollReveal>
             <div className="relative aspect-[4/5] w-full overflow-hidden">
               <img
@@ -68,11 +68,10 @@ export default function Home() {
                 alt="Lire, c'est avancer"
                 className="w-full h-full object-cover"
               />
-              {/* Subtle dark overlay on edges */}
               <div className="absolute inset-0"
-                style={{ background: 'linear-gradient(to right, rgba(12,11,9,0.4) 0%, transparent 30%, transparent 70%, rgba(12,11,9,0.4) 100%)' }}
+                style={{ background: 'linear-gradient(to right, rgba(245,240,232,0.3) 0%, transparent 30%, transparent 70%, rgba(245,240,232,0.3) 100%)' }}
               />
-              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-ink to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-paper to-transparent" />
             </div>
           </ScrollReveal>
 
@@ -80,12 +79,12 @@ export default function Home() {
           <ScrollReveal delay={150}>
             <span className="font-sans text-[10px] tracking-[0.35em] uppercase text-gold">La maison</span>
             <h2
-              className="font-serif font-light text-paper mt-5 mb-7 leading-tight"
+              className="font-serif font-light text-ink mt-5 mb-7 leading-tight"
               style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)' }}
             >
               Un éditeur indépendant au service des voix singulières
             </h2>
-            <p className="font-sans text-paper/45 leading-relaxed text-sm md:text-base mb-10 max-w-lg">
+            <p className="font-sans text-ink/55 leading-relaxed text-sm md:text-base mb-10 max-w-lg">
               Jabrilia place la littérature au cœur des grandes transitions humaines.
               Née de la conviction qu'une liberté éditoriale totale permet l'émergence
               des projets les plus authentiques.
@@ -93,7 +92,7 @@ export default function Home() {
             <MagneticButton className="inline-block">
               <Link
                 href="/a-propos"
-                className="block font-sans text-[11px] tracking-[0.22em] uppercase text-gold border-b border-gold/40 pb-0.5 hover:border-gold transition-colors duration-300"
+                className="block font-sans text-[11px] tracking-[0.22em] uppercase text-ink border-b border-ink/30 pb-0.5 hover:border-gold hover:text-gold transition-colors duration-300"
               >
                 Notre histoire →
               </Link>

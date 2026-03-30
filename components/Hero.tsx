@@ -111,19 +111,16 @@ export default function Hero() {
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.22 }}
+          style={{ opacity: 0.45 }}
         >
           <source src="/videos/hero-1.mp4" type="video/mp4" />
         </video>
       </div>
 
       {/* Layered overlays — plus denses pour laisser la vidéo en fond subtil */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/55 to-ink" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/40 to-ink/80" />
       <div className="absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 20%, rgba(12,11,9,0.85) 100%)' }}
-      />
-      <div className="absolute inset-0"
-        style={{ background: 'linear-gradient(to right, rgba(12,11,9,0.6) 0%, transparent 20%, transparent 80%, rgba(12,11,9,0.6) 100%)' }}
+        style={{ background: 'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, rgba(12,11,9,0.65) 100%)' }}
       />
 
       {/* Content */}
