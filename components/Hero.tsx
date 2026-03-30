@@ -13,12 +13,12 @@ const VIDEO_SOURCES = [
   [
     'https://res.cloudinary.com/dnbyi8fw6/video/upload/share4268875397021411373_kv40.mp4',
     'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/share4268875397021411373_kv40',
-    'https://res.cloudinary.com/dnbyi8fw6/video/upload/share4268875397021411373_kv40',
   ],
   [
+    'https://res.cloudinary.com/dnbyi8fw6/video/upload/share4268875397021411373_kv40tt.mp4',
+    'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/share4268875397021411373_kv40tt',
     'https://res.cloudinary.com/dnbyi8fw6/video/upload/share427370869461509158_tbzou8.mp4',
     'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/share427370869461509158_tbzou8',
-    'https://res.cloudinary.com/dnbyi8fw6/video/upload/share427370869461509158_tbzou8',
   ],
 ]
 
