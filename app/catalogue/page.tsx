@@ -1,21 +1,35 @@
-import type { Metadata } from 'next'
+'use client'
+
+import { useState, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { books } from '@/lib/books'
 import BookCard from '@/components/BookCard'
 import ScrollReveal from '@/components/ScrollReveal'
 
-export const metadata: Metadata = {
-  title: 'Catalogue',
-  description: 'Tous les titres publiés par Jabrilia Éditions — romans, essais, bandes dessinées.',
-}
-
-const genres = ['Tous', ...Array.from(new Set(books.map(b => b.genre)))]
+// Les 4 genres de Jabrilia Éditions + "Tous"
+const GENRES = ['Tous', 'Romans', 'Essais', 'Jeunesse', 'Bande dessinée'] as const
+type Genre = typeof GENRES[number]
 
 export default function CataloguePage() {
+  const [activeGenre, setActiveGenre] = useState<Genre>('Tous')
+
+  const filtered = useMemo(
+    () => activeGenre === 'Tous' ? books : books.filter(b => b.genre === activeGenre),
+    [activeGenre]
+  )
+
+  const counts = useMemo(() =>
+    GENRES.reduce((acc, g) => {
+      acc[g] = g === 'Tous' ? books.length : books.filter(b => b.genre === g).length
+      return acc
+    }, {} as Record<Genre, number>),
+    []
+  )
+
   return (
     <>
-      {/* Header with atmospheric image */}
+      {/* Header */}
       <section className="relative pt-36 pb-16 px-6 overflow-hidden">
-        {/* Background image — livre ouvert dans la nature */}
         <div className="absolute inset-0">
           <img
             src="https://res.cloudinary.com/dnbyi8fw6/image/upload/v1774855773/file_00000000e4dc71f48207943aa88c4d93_huietn.png"
@@ -46,37 +60,65 @@ export default function CataloguePage() {
         </div>
       </section>
 
-      {/* Genres */}
+      {/* Filtres actifs */}
       <section className="px-6 pb-12">
         <div className="max-w-7xl mx-auto flex flex-wrap gap-3">
-          {genres.map(genre => (
-            <span
-              key={genre}
-              className={`font-sans text-[10px] tracking-[0.2em] uppercase px-4 py-2 border cursor-default ${
-                genre === 'Tous'
-                  ? 'border-gold text-gold'
-                  : 'border-border text-paper/35 hover:border-paper/30 hover:text-paper/60 transition-colors duration-300'
-              }`}
-            >
-              {genre}
-            </span>
-          ))}
+          {GENRES.map(genre => {
+            const isActive = genre === activeGenre
+            return (
+              <button
+                key={genre}
+                onClick={() => setActiveGenre(genre)}
+                className={`
+                  relative font-sans text-[10px] tracking-[0.2em] uppercase px-4 py-2 border
+                  transition-all duration-300 cursor-pointer
+                  ${isActive
+                    ? 'border-gold bg-gold text-ink'
+                    : 'border-border text-paper/35 hover:border-paper/30 hover:text-paper/60'
+                  }
+                `}
+              >
+                {genre}
+                <span className={`ml-2 text-[9px] ${isActive ? 'text-ink/60' : 'text-gold/70'}`}>
+                  {counts[genre]}
+                </span>
+              </button>
+            )
+          })}
         </div>
       </section>
 
       {/* Divider */}
       <div className="h-px bg-border max-w-7xl mx-auto mx-6 mb-20" />
 
-      {/* Grid */}
+      {/* Grille filtrée avec animation */}
       <section className="pb-36 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-14 lg:gap-x-10">
-            {books.map((book, i) => (
-              <ScrollReveal key={book.slug} delay={i * 50}>
-                <BookCard book={book} />
-              </ScrollReveal>
-            ))}
-          </div>
+          <motion.div
+            layout
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-14 lg:gap-x-10"
+          >
+            <AnimatePresence mode="popLayout">
+              {filtered.map((book, i) => (
+                <motion.div
+                  key={book.slug}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3, delay: i * 0.04 }}
+                >
+                  <BookCard book={book} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+
+          {filtered.length === 0 && (
+            <p className="text-center text-paper/30 font-serif text-xl py-24">
+              Aucun titre dans cette catégorie pour le moment.
+            </p>
+          )}
         </div>
       </section>
     </>
