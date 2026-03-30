@@ -12,6 +12,15 @@ export interface Book {
 
 export const books: Book[] = [
   {
+    slug: 'le-trone-de-cendre',
+    title: 'Le Trône de Cendre — Tome I',
+    price: '19,90€',
+    release: '2027',
+    genre: 'Romans',
+    cover: '/covers/le-trone-de-cendre.jpg',
+    summary: `Dans un royaume fracturé par la trahison et le sang, un lion déchu cherche à reconquérir ce qui lui a été volé.\n\nLe Trône de Cendre est une saga épique où pouvoir, loyauté et vengeance s'entremêlent dans un monde de pierre et de feu. Le Tome I pose les fondations d'un destin hors du commun — celui d'un homme que l'on a voulu briser, et qui se relève.`,
+  },
+  {
     slug: 'les-reparatrices',
     title: 'Les réparatrices',
     price: '19,90€',
