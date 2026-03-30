@@ -35,6 +35,7 @@ export default function Hero() {
           { y: 0, duration: 1.2, stagger: 0.04, ease: 'power4.out' },
           0.2
         )
+      }
 
       tl.fromTo(eyebrowRef.current,
         { opacity: 0, y: 16, letterSpacing: '0.2em' },
