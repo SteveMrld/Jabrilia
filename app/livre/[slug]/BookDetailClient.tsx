@@ -50,7 +50,7 @@ export default function BookDetailClient({ book, paragraphs }: Props) {
   }, [])
 
   return (
-    <section className="pb-32 px-6">
+    <section className="pb-32 px-6 bg-paper">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
 
@@ -83,14 +83,14 @@ export default function BookDetailClient({ book, paragraphs }: Props) {
               <span className="font-sans text-[9px] tracking-[0.28em] uppercase border border-gold/60 text-gold px-3 py-1">
                 {book.genre}
               </span>
-              <span className="font-sans text-[9px] tracking-[0.22em] uppercase text-paper/30">
+              <span className="font-sans text-[9px] tracking-[0.22em] uppercase text-ink/30">
                 {book.release}
               </span>
             </div>
 
             {/* Title */}
             <h1
-              className="animate-item font-serif font-light text-paper leading-tight mb-5"
+              className="animate-item font-serif font-light text-ink leading-tight mb-5"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
             >
               {book.title}
@@ -104,7 +104,7 @@ export default function BookDetailClient({ book, paragraphs }: Props) {
             {/* Divider */}
             <div className="animate-item flex items-center gap-4 mb-10">
               <div className="w-8 h-px bg-gold" />
-              <span className="font-sans text-[9px] tracking-[0.3em] uppercase text-paper/25">Résumé</span>
+              <span className="font-sans text-[9px] tracking-[0.3em] uppercase text-ink/25">Résumé</span>
             </div>
 
             {/* Summary */}
@@ -114,8 +114,8 @@ export default function BookDetailClient({ book, paragraphs }: Props) {
                   key={i}
                   className={`font-sans leading-relaxed ${
                     i === 0
-                      ? 'text-paper/75 text-base md:text-lg font-light'
-                      : 'text-paper/45 text-sm md:text-base'
+                      ? 'text-ink/75 text-base md:text-lg font-light'
+                      : 'text-ink/45 text-sm md:text-base'
                   }`}
                 >
                   {p}
@@ -137,7 +137,7 @@ export default function BookDetailClient({ book, paragraphs }: Props) {
                   </a>
                 </MagneticButton>
               ) : (
-                <div className="flex-1 text-center font-sans text-[11px] tracking-[0.22em] uppercase border border-border text-paper/20 py-4 select-none">
+                <div className="flex-1 text-center font-sans text-[11px] tracking-[0.22em] uppercase border border-border text-ink/20 py-4 select-none">
                   Amazon — bientôt disponible
                 </div>
               )}
@@ -153,14 +153,14 @@ export default function BookDetailClient({ book, paragraphs }: Props) {
                   </a>
                 </MagneticButton>
               ) : (
-                <div className="flex-1 text-center font-sans text-[11px] tracking-[0.22em] uppercase border border-border text-paper/20 py-4 select-none">
+                <div className="flex-1 text-center font-sans text-[11px] tracking-[0.22em] uppercase border border-border text-ink/20 py-4 select-none">
                   Fnac — bientôt disponible
                 </div>
               )}
             </div>
 
             {/* Direct order */}
-            <p className="animate-item font-sans text-[11px] text-paper/25 leading-relaxed border-t border-border pt-6">
+            <p className="animate-item font-sans text-[11px] text-ink/25 leading-relaxed border-t border-border pt-6">
               Commande directe :{' '}
               <a href="mailto:info@jabrilia.com" className="text-gold/60 hover:text-gold transition-colors">
                 info@jabrilia.com

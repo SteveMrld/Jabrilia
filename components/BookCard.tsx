@@ -7,7 +7,7 @@ export default function BookCard({ book }: { book: Book }) {
     <Link href={`/livre/${book.slug}`} className="group block">
 
       {/* Cover */}
-      <div className="relative overflow-hidden bg-cream-dark aspect-[2/3] mb-4">
+      <div className="relative overflow-hidden aspect-[2/3] mb-4" style={{ background: '#EAE4D8' }}>
         <Image
           src={book.cover}
           alt={book.title}

@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="bg-ink text-paper antialiased overflow-x-hidden cursor-none">
+      <body className="bg-paper text-ink antialiased overflow-x-hidden cursor-none">
         <SmoothScroll>
           <Cursor />
           <Nav />

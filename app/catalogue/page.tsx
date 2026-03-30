@@ -29,16 +29,15 @@ export default function CataloguePage() {
   return (
     <>
       {/* Header */}
-      <section className="relative pt-36 pb-16 px-6 overflow-hidden">
+      <section className="relative pt-36 pb-16 px-6 overflow-hidden bg-paper">
         <div className="absolute inset-0">
           <img
             src="https://res.cloudinary.com/dnbyi8fw6/image/upload/v1774855773/file_00000000e4dc71f48207943aa88c4d93_huietn.png"
             alt=""
             aria-hidden
             className="w-full h-full object-cover"
-            style={{ opacity: 0.12 }}
+            style={{ opacity: 0.06 }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/70 to-ink" />
         </div>
 
         <div className="relative max-w-7xl mx-auto">
@@ -47,14 +46,14 @@ export default function CataloguePage() {
               Notre sélection
             </p>
             <h1
-              className="font-serif font-light text-paper leading-none"
+              className="font-serif font-light text-ink leading-none"
               style={{ fontSize: 'clamp(3.5rem, 10vw, 8rem)' }}
             >
               Catalogue
             </h1>
             <div className="mt-6 flex items-center gap-4">
               <div className="w-10 h-px bg-gold" />
-              <p className="font-sans text-paper/35 text-sm">{books.length} titres</p>
+              <p className="font-sans text-ink/35 text-sm">{books.length} titres</p>
             </div>
           </ScrollReveal>
         </div>
@@ -74,7 +73,7 @@ export default function CataloguePage() {
                   transition-all duration-300 cursor-pointer
                   ${isActive
                     ? 'border-gold bg-gold text-ink'
-                    : 'border-border text-paper/35 hover:border-paper/30 hover:text-paper/60'
+                    : 'border-border text-ink/35 hover:border-ink/20 hover:text-ink/60'
                   }
                 `}
               >
@@ -115,7 +114,7 @@ export default function CataloguePage() {
           </motion.div>
 
           {filtered.length === 0 && (
-            <p className="text-center text-paper/30 font-serif text-xl py-24">
+            <p className="text-center text-ink/30 font-serif text-xl py-24">
               Aucun titre dans cette catégorie pour le moment.
             </p>
           )}

@@ -34,10 +34,10 @@ export default function BookPage({ params }: { params: { slug: string } }) {
   return (
     <>
       {/* ── Back ── */}
-      <div className="pt-28 pb-6 px-6 max-w-7xl mx-auto">
+      <div className="pt-28 pb-6 px-6 max-w-7xl mx-auto bg-paper">
         <Link
           href="/catalogue"
-          className="inline-flex items-center gap-2 font-sans text-[10px] tracking-[0.22em] uppercase text-paper/25 hover:text-gold transition-colors duration-300"
+          className="inline-flex items-center gap-2 font-sans text-[10px] tracking-[0.22em] uppercase text-ink/30 hover:text-gold transition-colors duration-300"
         >
           ← Catalogue
         </Link>
@@ -47,14 +47,14 @@ export default function BookPage({ params }: { params: { slug: string } }) {
       <BookDetailClient book={book} paragraphs={paragraphs} />
 
       {/* ── Other titles ── */}
-      <section className="border-t border-border py-24 px-6 bg-surface">
+      <section className="border-t border-ink/10 py-24 px-6 bg-paper">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
             <p className="font-sans text-[10px] tracking-[0.35em] uppercase text-gold mb-14">
               Autres titres
             </p>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-16">
             {others.map((b, i) => (
               <ScrollReveal key={b.slug} delay={i * 100}>
                 <AnimatedBookCard book={b} />
