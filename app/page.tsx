@@ -9,10 +9,10 @@ import MagneticButton from '@/components/MagneticButton'
 
 export default function Home() {
   const featured = [
-    books.find(b => b.slug === 'sur-les-hauteurs-des-chutes-du-niagara'), // Disponible
-    books.find(b => b.slug === 'du-chaos-nait-une-etoile'),                // Juin 2026
-    books.find(b => b.slug === 'mon-petit-livre-anti-stress'),             // Août 2026
-    books.find(b => b.slug === 'les-memoires-reliees'),                    // Novembre 2026
+    books.find(b => b.slug === 'sur-les-hauteurs-des-chutes-du-niagara'),
+    books.find(b => b.slug === 'du-chaos-nait-une-etoile'),
+    books.find(b => b.slug === 'mon-petit-livre-anti-stress'),
+    books.find(b => b.slug === 'les-memoires-reliees'),
   ].filter(Boolean) as typeof books
 
   return (
@@ -22,136 +22,77 @@ export default function Home() {
       <PinnedManifeste />
 
       {/* ── Catalogue ── */}
-      <section className="pt-16 pb-20 bg-paper">
-        <div className="flex items-center gap-6 max-w-5xl mx-auto px-6 mb-12">
-          <div className="flex-1 h-px bg-ink/15" />
-          <span className="font-sans text-[10px] text-gold tracking-[0.35em] uppercase">Catalogue</span>
-          <div className="flex-1 h-px bg-ink/15" />
+      <section className="pt-10 pb-10 bg-paper">
+        <div className="flex items-center gap-5 max-w-5xl mx-auto px-6 mb-8">
+          <div className="flex-1 h-px bg-ink/12" />
+          <span className="font-sans text-[10px] text-gold tracking-[0.35em] uppercase shrink-0">Catalogue</span>
+          <div className="flex-1 h-px bg-ink/12" />
         </div>
 
         <div className="max-w-5xl mx-auto px-6 overflow-hidden">
-          {/* Slider horizontal — scroll natif, snap sur chaque carte */}
-          <div
-            className="flex gap-5 overflow-x-auto pb-4"
-            style={{
-              scrollSnapType: 'x mandatory',
-              WebkitOverflowScrolling: 'touch',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-            }}
-          >
+          <div className="flex gap-4 overflow-x-auto pb-2" style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
             {featured.map((book) => (
-              <div
-                key={book.slug}
-                style={{
-                  flex: '0 0 72vw',
-                  maxWidth: '260px',
-                  scrollSnapAlign: 'start',
-                }}
-              >
+              <div key={book.slug} style={{ flex: '0 0 68vw', maxWidth: '240px', scrollSnapAlign: 'start' }}>
                 <AnimatedBookCard book={book} />
               </div>
             ))}
-            {/* Espace final pour voir qu'il y a un suivant */}
-            <div style={{ flex: '0 0 1rem' }} />
+            <div style={{ flex: '0 0 1.5rem' }} />
           </div>
 
-          <div className="text-center mt-12">
-            <MagneticButton className="inline-block">
-              <Link
-                href="/catalogue"
-                className="group inline-flex items-center gap-3 font-sans text-[11px] tracking-[0.3em] uppercase text-ink/60 hover:text-gold transition-colors duration-500"
-              >
-                <span className="w-8 h-px bg-ink/20 group-hover:bg-gold group-hover:w-12 transition-all duration-500" />
-                Découvrir le catalogue complet
-                <span className="w-8 h-px bg-ink/20 group-hover:bg-gold group-hover:w-12 transition-all duration-500" />
-              </Link>
-            </MagneticButton>
+          <div className="text-center mt-8">
+            <Link href="/catalogue" className="group inline-flex items-center gap-3 font-sans text-[11px] tracking-[0.3em] uppercase text-ink/50 hover:text-gold transition-colors duration-300">
+              <span className="w-6 h-px bg-ink/20 group-hover:bg-gold transition-all duration-300" />
+              Découvrir le catalogue complet
+              <span className="w-6 h-px bg-ink/20 group-hover:bg-gold transition-all duration-300" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── À propos ── */}
-      <section className="py-20 lg:py-32 px-6 bg-paper border-t border-ink/10 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="hidden lg:block relative aspect-[4/5] w-full overflow-hidden">
-            <img
-              src="https://res.cloudinary.com/dnbyi8fw6/image/upload/v1774855773/file_000000006cbc7243b73c3bb8ce1c7f06_umb5tb.png"
-              alt="Lire, c'est avancer"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-paper to-transparent" />
-          </div>
-          <div>
-            <span className="font-sans text-[11px] tracking-[0.4em] uppercase text-gold block mb-3">La maison</span>
-            <div className="w-8 h-px bg-gold mb-6" />
-            <h2
-              className="font-serif font-light text-ink mb-7 leading-tight"
-              style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.8rem)' }}
-            >
-              Un éditeur indépendant au service des voix singulières
-            </h2>
-            <p className="font-sans text-ink/55 leading-relaxed text-sm md:text-base mb-10 max-w-lg">
-              Jabrilia place la littérature au cœur des grandes transitions humaines.
-              Née de la conviction qu'une liberté éditoriale totale permet l'émergence
-              des projets les plus authentiques.
-            </p>
-            <MagneticButton className="inline-block">
-              <Link
-                href="/a-propos"
-                className="block font-sans text-[11px] tracking-[0.22em] uppercase text-ink border-b border-ink/30 pb-0.5 hover:border-gold hover:text-gold transition-colors duration-300"
-              >
-                Notre histoire →
-              </Link>
-            </MagneticButton>
-          </div>
+      {/* ── La Maison ── */}
+      <section className="py-12 lg:py-20 px-6 bg-paper border-t border-ink/8">
+        <div className="max-w-5xl mx-auto">
+          <span className="font-sans text-[11px] tracking-[0.4em] uppercase text-gold block mb-2">La maison</span>
+          <div className="w-8 h-px bg-gold mb-5" />
+          <h2 className="font-serif font-light text-ink mb-5 leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}>
+            Un éditeur indépendant au service des voix singulières
+          </h2>
+          <p className="font-sans text-ink/50 leading-relaxed text-sm mb-7 max-w-xl">
+            Jabrilia place la littérature au cœur des grandes transitions humaines.
+            Née de la conviction qu'une liberté éditoriale totale permet l'émergence des projets les plus authentiques.
+          </p>
+          <Link href="/a-propos" className="inline font-sans text-[11px] tracking-[0.22em] uppercase text-ink border-b border-ink/25 pb-0.5 hover:border-gold hover:text-gold transition-colors duration-300">
+            Notre histoire →
+          </Link>
         </div>
       </section>
 
       {/* ── Actualités ── */}
-      <section className="py-20 lg:py-28 px-6 bg-paper border-t border-ink/10">
+      <section className="py-12 lg:py-18 px-6 bg-paper border-t border-ink/8">
         <div className="max-w-5xl mx-auto">
-
-          <div className="flex items-center gap-6 mb-14">
+          <div className="flex items-center gap-5 mb-10">
             <div className="flex-1 h-px bg-ink/10" />
-            <span className="font-sans text-[10px] text-gold tracking-[0.35em] uppercase">Actualités</span>
+            <span className="font-sans text-[10px] text-gold tracking-[0.35em] uppercase shrink-0">Actualités</span>
             <div className="flex-1 h-px bg-ink/10" />
           </div>
 
-          <div className="space-y-0">
+          <div>
             {news.map((item, i) => (
-              <div
-                key={item.id}
-                className={`grid grid-cols-1 md:grid-cols-[140px_1fr] gap-4 md:gap-10 py-8 ${
-                  i < news.length - 1 ? 'border-b border-ink/8' : ''
-                }`}
-              >
-                {/* Date + catégorie */}
-                <div className="flex md:flex-col gap-3 md:gap-2">
-                  <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-gold/80 bg-gold/10 px-2 py-1 h-fit">
+              <div key={item.id} className={`py-6 ${i < news.length - 1 ? 'border-b border-ink/8' : ''}`}>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-gold bg-gold/10 px-2 py-0.5">
                     {item.category}
                   </span>
-                  <span className="font-sans text-[10px] tracking-[0.1em] text-ink/35">
-                    {item.date}
-                  </span>
+                  <span className="font-sans text-[10px] text-ink/30">{item.date}</span>
                 </div>
-
-                {/* Contenu */}
-                <div>
-                  <h3
-                    className="font-serif font-light text-ink leading-snug mb-3"
-                    style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)' }}
-                  >
-                    {item.url ? (
-                      <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors duration-300">
-                        {item.title}
-                      </a>
-                    ) : item.title}
-                  </h3>
-                  <p className="font-sans text-sm text-ink/50 leading-relaxed">
-                    {item.excerpt}
-                  </p>
-                </div>
+                <h3 className="font-serif font-light text-ink leading-snug mb-2" style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)' }}>
+                  {item.url ? (
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors duration-300">
+                      {item.title} <span className="text-gold/60 text-sm">↗</span>
+                    </a>
+                  ) : item.title}
+                </h3>
+                <p className="font-sans text-sm text-ink/45 leading-relaxed">{item.excerpt}</p>
               </div>
             ))}
           </div>
@@ -159,21 +100,13 @@ export default function Home() {
       </section>
 
       {/* ── Citation ── */}
-      <section className="py-16 lg:py-24 px-6 border-t border-ink/10 bg-paper text-center">
-        <p
-          className="font-serif italic font-light text-ink/50 max-w-3xl mx-auto leading-relaxed mb-12"
-          style={{ fontSize: 'clamp(1.3rem, 3vw, 2.2rem)' }}
-        >
+      <section className="py-12 px-6 border-t border-ink/8 bg-paper text-center">
+        <p className="font-serif italic font-light text-ink/45 max-w-2xl mx-auto leading-relaxed mb-8" style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)' }}>
           "Nous n'avons jamais trop de livres."
         </p>
-        <MagneticButton className="inline-block">
-          <Link
-            href="/contact"
-            className="block font-sans text-[11px] tracking-[0.28em] uppercase text-ink bg-gold px-10 py-4 hover:bg-gold-light transition-colors duration-300"
-          >
-            Nous contacter
-          </Link>
-        </MagneticButton>
+        <Link href="/contact" className="inline-block font-sans text-[11px] tracking-[0.28em] uppercase text-ink bg-gold px-10 py-3.5 hover:bg-gold-light transition-colors duration-300">
+          Nous contacter
+        </Link>
       </section>
     </>
   )
