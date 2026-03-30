@@ -11,12 +11,10 @@ gsap.registerPlugin(ScrollTrigger)
 // URLs en ordre de priorité pour chaque vidéo — le navigateur essaie dans l'ordre
 const VIDEO_SOURCES = [
   [
-    'https://res.cloudinary.com/dnbyi8fw6/video/upload/share4268875397021411373_kv40.mp4',
-    'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/share4268875397021411373_kv40',
-  ],
-  [
     'https://res.cloudinary.com/dnbyi8fw6/video/upload/share4268875397021411373_kv40tt.mp4',
     'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/share4268875397021411373_kv40tt',
+  ],
+  [
     'https://res.cloudinary.com/dnbyi8fw6/video/upload/share427370869461509158_tbzou8.mp4',
     'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/share427370869461509158_tbzou8',
   ],
@@ -49,44 +47,49 @@ export default function Hero() {
     const v1 = vid1Ref.current
     if (!v0 || !v1) return
 
-    // Démarrage vidéo 0 immédiatement
-    v0.muted = true; v0.loop = true
-    v0.play().catch(() => {})
-    readyRef.current[0] = true
+    let intervalId: ReturnType<typeof setInterval> | null = null
+    readyRef.current = [false, false]
 
-    // Vidéo 1 : attendre qu'elle soit prête avant de switcher
+    const tryStartInterval = () => {
+      // Démarre le crossfade uniquement quand les DEUX sont prêtes
+      if (readyRef.current[0] && readyRef.current[1] && !intervalId) {
+        intervalId = setInterval(() => {
+          setActiveIndex(prev => (prev === 0 ? 1 : 0))
+        }, PLAY_DURATION)
+      }
+    }
+
+    const onReady = (idx: number) => () => {
+      readyRef.current[idx] = true
+      ;[v0, v1][idx].play().catch(() => {})
+      tryStartInterval()
+    }
+
+    v0.muted = true; v0.loop = true
     v1.muted = true; v1.loop = true
 
-    const onV1Ready = () => {
-      readyRef.current[1] = true
-      v1.play().catch(() => {})
-    }
+    v0.addEventListener('canplay', onReady(0), { once: true })
+    v1.addEventListener('canplay', onReady(1), { once: true })
 
-    const onV1Error = () => {
-      // Si v1 échoue, on reste sur v0 en boucle — pas de crossfade
-      console.warn('[Hero] Vidéo 2 non disponible, boucle sur vidéo 1.')
-    }
+    // Fallback : si une vidéo ne charge pas en 5s, on démarre quand même avec celle qui est prête
+    const fallback = setTimeout(() => {
+      if (!intervalId && (readyRef.current[0] || readyRef.current[1])) {
+        intervalId = setInterval(() => {
+          setActiveIndex(prev => {
+            const next = prev === 0 ? 1 : 0
+            return readyRef.current[next] ? next : prev
+          })
+        }, PLAY_DURATION)
+      }
+    }, 5000)
 
-    v1.addEventListener('canplay', onV1Ready, { once: true })
-    v1.addEventListener('error', onV1Error, { once: true })
-    v1.load()
-
-    // Switch uniquement si les deux vidéos sont prêtes
-    const interval = setInterval(() => {
-      setActiveIndex(prev => {
-        const next = prev === 0 ? 1 : 0
-        // Si v1 pas prête, on reste sur v0
-        if (next === 1 && !readyRef.current[1]) return 0
-        return next
-      })
-    }, PLAY_DURATION)
+    v0.load(); v1.load()
 
     return () => {
-      clearInterval(interval)
-      v1.removeEventListener('canplay', onV1Ready)
-      v1.removeEventListener('error', onV1Error)
+      if (intervalId) clearInterval(intervalId)
+      clearTimeout(fallback)
     }
-  }, [])
+  }, []) // eslint-disable-line
 
   /* ── GSAP animations ──────────────────────────────────── */
   useEffect(() => {
