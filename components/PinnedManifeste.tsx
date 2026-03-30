@@ -42,7 +42,7 @@ export default function PinnedManifeste() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-40 px-6 bg-ink">
+    <section ref={sectionRef} className="py-40 px-6 bg-paper">
       <div className="max-w-4xl mx-auto text-center">
 
         <p className="font-sans text-[10px] tracking-[0.4em] uppercase text-gold mb-14">
@@ -51,8 +51,8 @@ export default function PinnedManifeste() {
 
         <div className="space-y-4">
           {[
-            { text: 'La littérature', style: 'font-serif font-light text-paper', size: 'clamp(2rem, 6vw, 5rem)' },
-            { text: "n'est pas un refuge.", style: 'font-serif font-light text-paper', size: 'clamp(2rem, 6vw, 5rem)' },
+            { text: 'La littérature', style: 'font-serif font-light text-ink', size: 'clamp(2rem, 6vw, 5rem)' },
+            { text: "n'est pas un refuge.", style: 'font-serif font-light text-ink', size: 'clamp(2rem, 6vw, 5rem)' },
             { text: "C'est un observatoire.", style: 'font-serif italic text-gold', size: 'clamp(2rem, 6vw, 5rem)' },
           ].map((line, i) => (
             <p
@@ -75,7 +75,7 @@ export default function PinnedManifeste() {
 
         <p
           ref={addLine}
-          className="font-sans text-paper/50 leading-relaxed text-sm md:text-base max-w-xl mx-auto mt-8"
+          className="font-sans text-ink/50 leading-relaxed text-sm md:text-base max-w-xl mx-auto mt-8"
         >
           Nous publions des romans qui racontent, des essais qui éclairent,
           des bandes dessinées qui révèlent. Des œuvres habitées par leur époque,
