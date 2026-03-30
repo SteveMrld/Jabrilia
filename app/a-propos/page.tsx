@@ -71,10 +71,10 @@ export default function AProposPage() {
             <div className="mt-10 pt-8 border-t border-ink/10">
               <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-gold mb-4">Le fondateur</p>
               <p className="font-sans text-ink/55 leading-relaxed text-sm md:text-base">
-                Steve Moradel a fondé Jabrilia avec une conviction simple : il manque des livres qui dérangent,
-                qui interrogent, qui osent. Des livres engagés, portés par des voix qu'on n'entend pas assez.
-                Auteur lui-même, il a commencé par publier ses propres textes — avant d'ouvrir la maison
-                à d'autres auteurs qui partagent cette même exigence de liberté.
+                Steve Moradel a fondé Jabrilia avec l'envie d'apporter sa pierre à l'édifice,
+                celle d'une littérature engagée, curieuse, ouverte à des voix qu'on entend encore trop peu.
+                Auteur lui-même, son premier roman a rencontré un beau succès, l'encourageant à aller plus loin
+                et à ouvrir la maison à d'autres auteurs animés par la même liberté d'expression.
               </p>
             </div>
           </div>
