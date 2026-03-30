@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Nav from '@/components/Nav'
+import BackBar from '@/components/BackBar'
 import Footer from '@/components/Footer'
 import SmoothScroll from '@/components/SmoothScroll'
 import Cursor from '@/components/Cursor'
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-paper text-ink antialiased overflow-x-hidden cursor-none">
         <SmoothScroll>
           <Cursor />
+          <BackBar />
           <Nav />
           <PageTransition>
             <main>{children}</main>

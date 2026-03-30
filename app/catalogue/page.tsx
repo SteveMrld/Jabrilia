@@ -42,7 +42,7 @@ export default function CataloguePage() {
 
   return (
     <div style={{ minHeight: '100vh', background: '#F0EBE0' }}>
-      <div style={{ paddingTop: '8rem', paddingBottom: '3rem', paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
+      <div style={{ paddingTop: '9.5rem', paddingBottom: '3rem', paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
         <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '10px', letterSpacing: '0.35em', textTransform: 'uppercase', color: '#C49A4A', marginBottom: '1rem' }}>
           Notre sélection
         </p>

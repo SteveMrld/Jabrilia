@@ -11,7 +11,7 @@ export default function AProposPage() {
     <div className="bg-paper">
 
       {/* ── Hero ── */}
-      <section className="relative pt-36 pb-24 px-6 overflow-hidden">
+      <section className="relative pt-44 pb-24 px-6 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="https://res.cloudinary.com/dnbyi8fw6/image/upload/v1774855773/file_0000000074c871f49607c3d984d92026_zduwcm.png"
