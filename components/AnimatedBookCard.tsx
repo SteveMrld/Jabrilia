@@ -86,9 +86,20 @@ export default function AnimatedBookCard({ book }: { book: Book }) {
         />
 
         {/* Release badge */}
-        <div className="absolute top-3 left-3 bg-ink/75 backdrop-blur-sm px-3 py-1">
-          <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-gold/80">
-            {book.release}
+        <div className={`absolute top-3 left-3 backdrop-blur-sm px-3 py-1 ${
+          book.release.includes('2027') || book.release.includes('2028')
+            ? 'bg-ink/60'
+            : 'bg-gold/90'
+        }`}>
+          <span className={`font-sans text-[9px] tracking-[0.2em] uppercase ${
+            book.release.includes('2027') || book.release.includes('2028')
+              ? 'text-paper/60'
+              : 'text-ink font-medium'
+          }`}>
+            {book.release.includes('2027') || book.release.includes('2028')
+              ? `À paraître · ${book.release}`
+              : book.release
+            }
           </span>
         </div>
       </motion.div>

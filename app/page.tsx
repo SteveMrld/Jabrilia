@@ -8,7 +8,10 @@ import ScrollReveal from '@/components/ScrollReveal'
 import MagneticButton from '@/components/MagneticButton'
 
 export default function Home() {
-  const featured = books.slice(0, 4)
+  // Les 3 livres à paraître en 2026
+  const featured = books.filter(b =>
+    ['du-chaos-nait-une-etoile', 'mon-petit-livre-anti-stress', 'les-memoires-reliees'].includes(b.slug)
+  )
 
   return (
     <>
@@ -31,7 +34,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-16 lg:pb-28">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 max-w-3xl lg:max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-10 max-w-4xl mx-auto">
             {featured.map((book, i) => (
               <ScrollReveal key={book.slug} delay={i * 100}>
                 <AnimatedBookCard book={book} />
