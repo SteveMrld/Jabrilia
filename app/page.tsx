@@ -22,18 +22,18 @@ export default function Home() {
       <PinnedManifeste />
 
       {/* ── Catalogue section ──────────────────────────────────── */}
-      <section className="py-6 bg-surface">
+      <section className="py-6 bg-cream">
         {/* Section label */}
         <div className="flex items-center gap-6 max-w-7xl mx-auto px-6 lg:px-12 mb-20">
-          <div className="flex-1 h-px bg-border" />
+          <div className="flex-1 h-px bg-ink/15" />
           <ScrollReveal>
             <span className="font-sans text-[10px] text-gold tracking-[0.35em] uppercase">Catalogue</span>
           </ScrollReveal>
-          <div className="flex-1 h-px bg-border" />
+          <div className="flex-1 h-px bg-ink/15" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-28">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-12">
             {featured.map((book, i) => (
               <ScrollReveal key={book.slug} delay={i * 100}>
                 <AnimatedBookCard book={book} />
@@ -46,7 +46,7 @@ export default function Home() {
               <MagneticButton className="inline-block">
                 <Link
                   href="/catalogue"
-                  className="block font-sans text-[11px] tracking-[0.28em] uppercase text-gold border border-gold/40 px-12 py-4 hover:bg-gold hover:text-ink hover:border-gold transition-all duration-400"
+                  className="block font-sans text-[11px] tracking-[0.28em] uppercase text-ink border border-ink/30 px-12 py-4 hover:bg-ink hover:text-paper hover:border-ink transition-all duration-400"
                 >
                   Voir les {books.length} titres →
                 </Link>
@@ -103,10 +103,10 @@ export default function Home() {
       </section>
 
       {/* ── Quote banner ─────────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-border bg-surface text-center">
+      <section className="py-32 px-6 border-t border-ink/10 bg-cream-dark text-center">
         <ScrollReveal>
           <p
-            className="font-serif italic font-light text-paper/60 max-w-3xl mx-auto leading-relaxed mb-14"
+            className="font-serif italic font-light text-ink/50 max-w-3xl mx-auto leading-relaxed mb-14"
             style={{ fontSize: 'clamp(1.3rem, 3vw, 2.2rem)' }}
           >
             "Nous n'avons jamais trop de livres."

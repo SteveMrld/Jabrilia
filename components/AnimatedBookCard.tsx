@@ -36,19 +36,19 @@ export default function AnimatedBookCard({ book }: { book: Book }) {
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
         style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 800 }}
-        className="relative overflow-hidden bg-surface aspect-[3/4] mb-5"
+        className="relative overflow-hidden bg-cream-dark aspect-[2/3] mb-5"
       >
         {/* Cover image */}
         <motion.div
           className="absolute inset-0"
-          whileHover={{ scale: 1.06 }}
+          whileHover={{ scale: 1.03 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <Image
             src={book.cover}
             alt={book.title}
             fill
-            className="object-cover"
+            className="object-contain"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         </motion.div>
@@ -95,8 +95,8 @@ export default function AnimatedBookCard({ book }: { book: Book }) {
 
       {/* Meta */}
       <div>
-        <p className="font-sans text-[9px] tracking-[0.22em] uppercase text-muted mb-1.5">{book.genre}</p>
-        <h3 className="font-serif text-[1.05rem] leading-snug font-light text-paper group-hover:text-gold transition-colors duration-300 mb-1.5">
+        <p className="font-sans text-[9px] tracking-[0.22em] uppercase text-ink/40 mb-1.5">{book.genre}</p>
+        <h3 className="font-serif text-[1.05rem] leading-snug font-light text-ink group-hover:text-gold transition-colors duration-300 mb-1.5">
           {book.title}
         </h3>
         <p className="font-sans text-sm text-gold font-light">{book.price}</p>

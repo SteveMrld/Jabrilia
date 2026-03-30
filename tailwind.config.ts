@@ -16,6 +16,8 @@ const config: Config = {
         surface: '#141210',
         muted: '#7A7570',
         border: '#252220',
+        cream: '#F5F0E8',
+        'cream-dark': '#EAE4D8',
       },
       fontFamily: {
         serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
