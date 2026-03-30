@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { books } from '@/lib/books'
+import { news } from '@/lib/news'
 import Hero from '@/components/Hero'
 import MarqueeBanner from '@/components/MarqueeBanner'
 import PinnedManifeste from '@/components/PinnedManifeste'
@@ -103,6 +104,56 @@ export default function Home() {
                 Notre histoire →
               </Link>
             </MagneticButton>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Actualités ── */}
+      <section className="py-20 lg:py-28 px-6 bg-paper border-t border-ink/10">
+        <div className="max-w-5xl mx-auto">
+
+          <div className="flex items-center gap-6 mb-14">
+            <div className="flex-1 h-px bg-ink/10" />
+            <span className="font-sans text-[10px] text-gold tracking-[0.35em] uppercase">Actualités</span>
+            <div className="flex-1 h-px bg-ink/10" />
+          </div>
+
+          <div className="space-y-0">
+            {news.map((item, i) => (
+              <div
+                key={item.id}
+                className={`grid grid-cols-1 md:grid-cols-[140px_1fr] gap-4 md:gap-10 py-8 ${
+                  i < news.length - 1 ? 'border-b border-ink/8' : ''
+                }`}
+              >
+                {/* Date + catégorie */}
+                <div className="flex md:flex-col gap-3 md:gap-2">
+                  <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-gold/80 bg-gold/10 px-2 py-1 h-fit">
+                    {item.category}
+                  </span>
+                  <span className="font-sans text-[10px] tracking-[0.1em] text-ink/35">
+                    {item.date}
+                  </span>
+                </div>
+
+                {/* Contenu */}
+                <div>
+                  <h3
+                    className="font-serif font-light text-ink leading-snug mb-3"
+                    style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)' }}
+                  >
+                    {item.url ? (
+                      <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors duration-300">
+                        {item.title}
+                      </a>
+                    ) : item.title}
+                  </h3>
+                  <p className="font-sans text-sm text-ink/50 leading-relaxed">
+                    {item.excerpt}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

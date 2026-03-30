@@ -39,13 +39,24 @@ export default function Nav() {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16 md:h-20">
 
-          {/* Logo */}
-          <Link
-            href="/"
-            className="font-serif text-xl md:text-2xl tracking-[0.22em] font-light text-paper hover:text-gold transition-colors duration-300"
-          >
-            JABRILIA<span className="text-gold">.</span>
-          </Link>
+          {/* Logo + flèche retour sur pages internes */}
+          <div className="flex items-center gap-4">
+            {!isHome && (
+              <Link
+                href="/"
+                className="flex items-center gap-1.5 font-sans text-[10px] tracking-[0.2em] uppercase text-paper/40 hover:text-gold transition-colors duration-300 group"
+                aria-label="Retour à l'accueil"
+              >
+                <span className="text-base leading-none transition-transform duration-300 group-hover:-translate-x-1">←</span>
+              </Link>
+            )}
+            <Link
+              href="/"
+              className="font-serif text-xl md:text-2xl tracking-[0.22em] font-light text-paper hover:text-gold transition-colors duration-300"
+            >
+              JABRILIA<span className="text-gold">.</span>
+            </Link>
+          </div>
 
           {/* Desktop */}
           <nav className="hidden md:flex items-center gap-10 lg:gap-14">
