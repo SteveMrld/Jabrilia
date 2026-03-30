@@ -31,7 +31,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-16 lg:pb-28">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 max-w-3xl lg:max-w-5xl mx-auto">
             {featured.map((book, i) => (
               <ScrollReveal key={book.slug} delay={i * 100}>
                 <AnimatedBookCard book={book} />

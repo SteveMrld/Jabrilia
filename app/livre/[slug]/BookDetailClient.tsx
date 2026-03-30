@@ -60,14 +60,14 @@ export default function BookDetailClient({ book, paragraphs }: Props) {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="relative aspect-[3/4] max-w-sm mx-auto lg:mx-0 w-full overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.7)]"
+              className="relative aspect-[2/3] max-w-sm mx-auto lg:mx-0 w-full overflow-hidden bg-[#F0EBE0] shadow-[0_40px_100px_rgba(0,0,0,0.4)]"
             >
               <div ref={imgRef} className="absolute inset-0 scale-110">
                 <Image
                   src={book.cover}
                   alt={book.title}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   priority
                   sizes="(max-width: 1024px) 80vw, 40vw"
                 />
