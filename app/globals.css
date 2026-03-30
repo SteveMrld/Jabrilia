@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Hide default cursor on desktop ─────────────────────── */
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+/* ─── Scroll indicator line ──────────────────────────────── */
+@keyframes scrollLine {
+  0%   { transform: translateY(-100%); }
+  50%  { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+/* ─── Marquee ────────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 30s linear infinite; }
+.animate-marquee-reverse { animation: marquee 30s linear infinite reverse; }
+
+/* ─── Scroll reveal (fallback for non-GSAP elements) ─────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Hero fade-in ───────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0C0B09; }
+::-webkit-scrollbar-thumb { background: #252220; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #C49A4A; }
+
+/* ─── Selection ──────────────────────────────────────────── */
+::selection { background: #C49A4A; color: #0C0B09; }
+
+/* ─── Smooth scroll (html) ───────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+/* ─── Film grain overlay ─────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
