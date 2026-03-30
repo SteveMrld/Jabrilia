@@ -39,14 +39,16 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-20">
+          <div className="text-center mt-10 lg:mt-16">
             <ScrollReveal>
               <MagneticButton className="inline-block">
                 <Link
                   href="/catalogue"
-                  className="block font-sans text-[11px] tracking-[0.28em] uppercase text-ink border border-ink/30 px-12 py-4 hover:bg-ink hover:text-paper hover:border-ink transition-all duration-400"
+                  className="group inline-flex items-center gap-3 font-sans text-[11px] tracking-[0.3em] uppercase text-ink/60 hover:text-gold transition-colors duration-500"
                 >
-                  Voir les {books.length} titres →
+                  <span className="w-8 h-px bg-ink/20 group-hover:bg-gold group-hover:w-12 transition-all duration-500" />
+                  Découvrir le catalogue complet
+                  <span className="w-8 h-px bg-ink/20 group-hover:bg-gold group-hover:w-12 transition-all duration-500" />
                 </Link>
               </MagneticButton>
             </ScrollReveal>

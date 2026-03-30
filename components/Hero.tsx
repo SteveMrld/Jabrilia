@@ -77,15 +77,42 @@ export default function Hero() {
       }
 
       tl.fromTo(eyebrowRef.current,
-        { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.9 }, 0)
+        { opacity: 0, letterSpacing: '0.1em' },
+        { opacity: 1, letterSpacing: '0.45em', duration: 1.2, ease: 'power2.out' }, 0)
 
-      // Tagline : chaque mot arrive avec un léger décalage et grossit
+      // Tagline cinématique — chaque mot arrive individuellement
       const wEls = wordRefs.map(r => r.current).filter(Boolean)
-      tl.fromTo(wEls,
-        { opacity: 0, y: 30, scale: 0.85 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.9, stagger: 0.18, ease: 'back.out(1.4)' },
-        1.3
-      )
+      wEls.forEach((el, i) => {
+        tl.fromTo(el,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 1.4,
+            filter: 'blur(12px)',
+            letterSpacing: '0.4em',
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: 'blur(0px)',
+            letterSpacing: i === 2 ? '0.06em' : '0.02em',
+            duration: 1.1,
+            ease: 'expo.out',
+          },
+          1.1 + i * 0.22
+        )
+      })
+
+      // Après l'entrée : "inspirer." pulse doucement en or
+      if (wordRefs[2].current) {
+        tl.to(wordRefs[2].current, {
+          color: '#C49A4A',
+          textShadow: '0 0 40px rgba(196,154,74,0.4)',
+          duration: 0.8,
+          ease: 'power2.inOut',
+        }, 2.0)
+      }
 
       tl.fromTo(ctaRef.current,
         { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.9 }, 2.0)
@@ -170,15 +197,20 @@ export default function Hero() {
 
         {/* Tagline — plus grand, animé mot par mot */}
         <p
-          className="mb-16 flex flex-wrap justify-center gap-x-4"
+          className="mb-16 flex flex-wrap justify-center items-baseline gap-x-5 gap-y-2"
           aria-label="Éveiller, questionner, inspirer."
         >
           {TAGLINE_WORDS.map((word, i) => (
             <span
               key={word}
               ref={wordRefs[i]}
-              className="font-serif italic text-paper/80 opacity-0 inline-block"
-              style={{ fontSize: 'clamp(1.4rem, 3.5vw, 2.2rem)' }}
+              className="font-serif italic text-paper/75 opacity-0 inline-block"
+              style={{
+                fontSize: i === 2
+                  ? 'clamp(1.8rem, 4.5vw, 2.8rem)'   // "inspirer." — plus grand
+                  : 'clamp(1.2rem, 3vw, 1.9rem)',
+                fontWeight: i === 2 ? 400 : 300,
+              }}
             >
               {word}
             </span>
