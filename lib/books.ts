@@ -26,7 +26,7 @@ export const books: Book[] = [
     price: '16,90€',
     release: 'Septembre 2026',
     genre: 'Jeunesse',
-    cover: 'https://static.wixstatic.com/media/2ac949_7063ae2dcc354a97bcce6e8b5b712394~mv2.png',
+    cover: '/covers/mon-petit-livre-anti-stress.jpg',
     summary: `Et si on donnait enfin à nos enfants les mots qu'on aurait aimé entendre petits ?\n\nCe livre n'est pas un mode d'emploi. C'est un compagnon de cœur. Un petit guide simple et poétique pour aider les enfants à comprendre ce qu'ils ressentent, à poser leurs émotions, et à retrouver leur calme intérieur.\n\nConçu comme un véritable voyage intérieur, il mêle des outils concrets (respiration magique, rituels du matin, carnet de gratitude…), des témoignages authentiques, des jeux, des pages à compléter, et des conseils pour les parents — afin d'avancer ensemble, pas à pas.\n\nChaque page est une invitation à se découvrir, à s'apaiser, à se sentir capable et aimé. Car les enfants n'ont pas besoin de solutions miracles. Ils ont besoin de présence, de douceur, et de confiance.`,
   },
   {
