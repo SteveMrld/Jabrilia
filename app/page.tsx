@@ -22,10 +22,10 @@ export default function Home() {
       <PinnedManifeste />
 
       {/* ── Catalogue section ──────────────────────────────────── */}
-      <section className="py-6 bg-cream">
+      <section className="py-6 bg-paper">
         {/* Section label */}
         <div className="flex items-center gap-6 max-w-7xl mx-auto px-6 lg:px-12 mb-20">
-          <div className="flex-1 h-px bg-ink/15" />
+        <div className="flex-1 h-px bg-ink/15" />
           <ScrollReveal>
             <span className="font-sans text-[10px] text-gold tracking-[0.35em] uppercase">Catalogue</span>
           </ScrollReveal>
@@ -103,7 +103,7 @@ export default function Home() {
       </section>
 
       {/* ── Quote banner ─────────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-ink/10 bg-cream-dark text-center">
+      <section className="py-32 px-6 border-t border-ink/10 bg-paper text-center">
         <ScrollReveal>
           <p
             className="font-serif italic font-light text-ink/50 max-w-3xl mx-auto leading-relaxed mb-14"

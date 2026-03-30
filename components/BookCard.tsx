@@ -36,8 +36,8 @@ export default function BookCard({ book }: { book: Book }) {
 
       {/* Meta */}
       <div className="px-0.5">
-        <p className="font-sans text-[9px] tracking-[0.22em] uppercase text-muted mb-1.5">{book.genre}</p>
-        <h3 className="font-serif text-[1.05rem] leading-snug font-light text-paper group-hover:text-gold transition-colors duration-300 mb-1.5">
+        <p className="font-sans text-[9px] tracking-[0.22em] uppercase text-ink/40 mb-1.5">{book.genre}</p>
+        <h3 className="font-serif text-[1.05rem] leading-snug font-light text-ink group-hover:text-gold transition-colors duration-300 mb-1.5">
           {book.title}
         </h3>
         <p className="font-sans text-sm text-gold font-light">{book.price}</p>

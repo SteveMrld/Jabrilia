@@ -22,7 +22,7 @@ export default function PinnedManifeste() {
       // Each line fades in sequentially as you scroll
       lines.forEach((line, i) => {
         gsap.fromTo(line,
-          { opacity: 0.12, y: 20 },
+          { opacity: 0.4, y: 20 },
           {
             opacity: 1,
             y: 0,
@@ -51,9 +51,9 @@ export default function PinnedManifeste() {
 
         <div className="space-y-4">
           {[
-            { text: 'La littérature', style: 'font-serif font-light text-paper/20', size: 'clamp(2rem, 6vw, 5rem)' },
-            { text: "n'est pas un refuge.", style: 'font-serif font-light text-paper/20', size: 'clamp(2rem, 6vw, 5rem)' },
-            { text: "C'est un observatoire.", style: 'font-serif italic text-gold/20', size: 'clamp(2rem, 6vw, 5rem)' },
+            { text: 'La littérature', style: 'font-serif font-light text-paper', size: 'clamp(2rem, 6vw, 5rem)' },
+            { text: "n'est pas un refuge.", style: 'font-serif font-light text-paper', size: 'clamp(2rem, 6vw, 5rem)' },
+            { text: "C'est un observatoire.", style: 'font-serif italic text-gold', size: 'clamp(2rem, 6vw, 5rem)' },
           ].map((line, i) => (
             <p
               key={i}
@@ -68,21 +68,21 @@ export default function PinnedManifeste() {
 
         <div
           ref={addLine}
-          className="mt-14 flex justify-center opacity-10"
+          className="mt-14 flex justify-center"
         >
-          <div className="w-12 h-px bg-gold" />
+          <div className="w-12 h-px bg-gold/40" />
         </div>
 
         <p
           ref={addLine}
-          className="font-sans text-paper/10 leading-relaxed text-sm md:text-base max-w-xl mx-auto mt-8"
+          className="font-sans text-paper/50 leading-relaxed text-sm md:text-base max-w-xl mx-auto mt-8"
         >
           Nous publions des romans qui racontent, des essais qui éclairent,
           des bandes dessinées qui révèlent. Des œuvres habitées par leur époque,
           portées par la force d'une écriture et d'un regard singulier.
         </p>
 
-        <div ref={addLine} className="mt-12 opacity-10">
+        <div ref={addLine} className="mt-12">
           <Link
             href="/a-propos"
             className="font-sans text-[11px] tracking-[0.25em] uppercase text-gold border border-gold/50 px-8 py-3 hover:bg-gold hover:text-ink transition-all duration-300"

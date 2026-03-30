@@ -27,17 +27,14 @@ export default function Hero() {
       if (titleEl) {
         const text = titleEl.textContent || ''
         titleEl.innerHTML = text.split('').map((char, i) =>
-          `<span class="inline-block overflow-hidden"><span class="inline-block char-${i}" style="transform:translateY(120%)">${char === '.' ? `<span class="text-gold">.</span>` : char}</span></span>`
+          `<span class="inline-block overflow-hidden"><span class="inline-block char-${i}">${char === '.' ? `<span class="text-gold">.</span>` : char}</span></span>`
         ).join('')
-        // Re-select spans after rewrite
         const chars = titleEl.querySelectorAll<HTMLElement>('span > span')
-        tl.to(chars, {
-          y: 0,
-          duration: 1.2,
-          stagger: 0.04,
-          ease: 'power4.out',
-        }, 0.2)
-      }
+        tl.fromTo(chars,
+          { y: '120%' },
+          { y: 0, duration: 1.2, stagger: 0.04, ease: 'power4.out' },
+          0.2
+        )
 
       tl.fromTo(eyebrowRef.current,
         { opacity: 0, y: 16, letterSpacing: '0.2em' },
