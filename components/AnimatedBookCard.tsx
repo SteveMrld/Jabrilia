@@ -85,16 +85,16 @@ export default function AnimatedBookCard({ book }: { book: Book }) {
           }}
         />
 
-        {/* Release badge */}
-        <div className={`absolute top-3 left-3 backdrop-blur-sm px-3 py-1 ${
-          book.release.includes('2027') || book.release.includes('2028')
-            ? 'bg-ink/60'
-            : 'bg-gold/90'
-        }`}>
-          <span className={`font-sans text-[9px] tracking-[0.2em] uppercase ${
+      </motion.div>
+
+      {/* Meta */}
+      <div>
+        {/* Badge date — hors image pour ne pas couvrir la couverture */}
+        <div className="flex items-center gap-2 mt-3 mb-1.5">
+          <span className={`font-sans text-[8px] tracking-[0.2em] uppercase px-2 py-0.5 ${
             book.release.includes('2027') || book.release.includes('2028')
-              ? 'text-paper/60'
-              : 'text-ink font-medium'
+              ? 'bg-ink/10 text-ink/40'
+              : 'bg-gold text-ink font-medium'
           }`}>
             {book.release.includes('2027') || book.release.includes('2028')
               ? `À paraître · ${book.release}`
@@ -102,11 +102,7 @@ export default function AnimatedBookCard({ book }: { book: Book }) {
             }
           </span>
         </div>
-      </motion.div>
-
-      {/* Meta */}
-      <div>
-        <p className="font-sans text-[9px] tracking-[0.22em] uppercase text-ink/40 mb-1.5">{book.genre}</p>
+        <p className="font-sans text-[9px] tracking-[0.22em] uppercase text-ink/40 mb-1">{book.genre}</p>
         <h3 className="font-serif text-[1.05rem] leading-snug font-light text-ink group-hover:text-gold transition-colors duration-300 mb-1.5">
           {book.title}
         </h3>
