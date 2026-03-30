@@ -23,16 +23,14 @@ export default function Home() {
 
       {/* ── Catalogue section ──────────────────────────────────── */}
       <section className="py-6 bg-paper">
-        {/* Section label */}
-        <div className="flex items-center gap-6 max-w-7xl mx-auto px-6 lg:px-12 mb-20">
+        <div className="flex items-center gap-6 max-w-7xl mx-auto px-6 lg:px-12 mb-10 lg:mb-20 mt-10 lg:mt-0">
         <div className="flex-1 h-px bg-ink/15" />
           <ScrollReveal>
             <span className="font-sans text-[10px] text-gold tracking-[0.35em] uppercase">Catalogue</span>
           </ScrollReveal>
-          <div className="flex-1 h-px bg-ink/15" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-28">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-16 lg:pb-28">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
             {featured.map((book, i) => (
               <ScrollReveal key={book.slug} delay={i * 100}>
@@ -57,11 +55,11 @@ export default function Home() {
       </section>
 
       {/* ── À propos teaser ──────────────────────────────────────── */}
-      <section className="py-36 px-6 bg-paper border-t border-ink/10 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <section className="py-20 lg:py-36 px-6 bg-paper border-t border-ink/10 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-          {/* Image */}
-          <ScrollReveal>
+          {/* Image — cachée sur mobile pour éviter l'espace vide */}
+          <ScrollReveal className="hidden lg:block">
             <div className="relative aspect-[4/5] w-full overflow-hidden">
               <img
                 src="https://res.cloudinary.com/dnbyi8fw6/image/upload/v1774855773/file_000000006cbc7243b73c3bb8ce1c7f06_umb5tb.png"
@@ -102,7 +100,7 @@ export default function Home() {
       </section>
 
       {/* ── Quote banner ─────────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-ink/10 bg-paper text-center">
+      <section className="py-16 lg:py-32 px-6 border-t border-ink/10 bg-paper text-center">
         <ScrollReveal>
           <p
             className="font-serif italic font-light text-ink/50 max-w-3xl mx-auto leading-relaxed mb-14"

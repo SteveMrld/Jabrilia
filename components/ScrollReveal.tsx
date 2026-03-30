@@ -15,19 +15,26 @@ export default function ScrollReveal({ children, delay = 0, className = '' }: Pr
     const el = ref.current
     if (!el) return
 
+    // Sécurité : rendre visible après 1.5s max quoi qu'il arrive
+    const fallback = setTimeout(() => el.classList.add('visible'), 1500)
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          clearTimeout(fallback)
           const timer = setTimeout(() => el.classList.add('visible'), delay)
           observer.unobserve(el)
           return () => clearTimeout(timer)
         }
       },
-      { threshold: 0.05, rootMargin: '0px 0px 0px 0px' }
+      { threshold: 0, rootMargin: '0px 0px 100px 0px' }
     )
 
     observer.observe(el)
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      clearTimeout(fallback)
+    }
   }, [delay])
 
   return (

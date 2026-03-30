@@ -42,7 +42,7 @@ export default function PinnedManifeste() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-40 px-6 bg-paper">
+    <section ref={sectionRef} className="py-20 lg:py-40 px-6 bg-paper">
       <div className="max-w-4xl mx-auto text-center">
 
         <p className="font-sans text-[10px] tracking-[0.4em] uppercase text-gold mb-14">
