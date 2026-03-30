@@ -5,8 +5,14 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { Book } from '@/lib/books'
+import BookCard from '@/components/BookCard'
 
 export default function AnimatedBookCard({ book }: { book: Book }) {
+  // Si le livre n'est pas disponible → mécanique flou universelle via BookCard
+  if (book.release !== 'Disponible') {
+    return <BookCard book={book} />
+  }
+
   const cardRef = useRef<HTMLDivElement>(null)
 
   const x = useMotionValue(0)
