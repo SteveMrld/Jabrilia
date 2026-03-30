@@ -1,12 +1,17 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MagneticButton from '@/components/MagneticButton'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const VIDEOS = [
+  'https://res.cloudinary.com/dnbyi8fw6/video/upload/share4268875397021411373_kv40.mp4',
+  'https://res.cloudinary.com/dnbyi8fw6/video/upload/share427370869461509158_tbzou8.mp4',
+]
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -17,12 +22,53 @@ export default function Hero() {
   const ctaRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
 
+  const vid0Ref = useRef<HTMLVideoElement>(null)
+  const vid1Ref = useRef<HTMLVideoElement>(null)
+  const [active, setActive] = useState(0)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Crossfade entre les deux vidéos
+  useEffect(() => {
+    const FADE_DURATION = 1500  // ms de fondu
+    const PLAY_DURATION = 8000  // ms d'affichage par vidéo
+
+    const refs = [vid0Ref, vid1Ref]
+
+    const switchTo = (next: number) => {
+      const prev = next === 0 ? 1 : 0
+      const nextEl = refs[next].current
+      const prevEl = refs[prev].current
+      if (!nextEl || !prevEl) return
+
+      nextEl.currentTime = 0
+      nextEl.play().catch(() => {})
+
+      // Fade in next, fade out prev
+      nextEl.style.transition = `opacity ${FADE_DURATION}ms ease`
+      prevEl.style.transition = `opacity ${FADE_DURATION}ms ease`
+      nextEl.style.opacity = '1'
+      prevEl.style.opacity = '0'
+
+      setActive(next)
+      timerRef.current = setTimeout(() => switchTo(next === 0 ? 1 : 0), PLAY_DURATION)
+    }
+
+    // Démarrage
+    const v0 = vid0Ref.current
+    const v1 = vid1Ref.current
+    if (v0) { v0.style.opacity = '1'; v0.play().catch(() => {}) }
+    if (v1) { v1.style.opacity = '0' }
+
+    timerRef.current = setTimeout(() => switchTo(1), PLAY_DURATION)
+
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
+  }, [])
+
+  // Animations GSAP d'entrée
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // ── Entry timeline ───────────────────────────────
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
 
-      // Split title into characters
       const titleEl = titleRef.current
       if (titleEl) {
         const text = titleEl.textContent || ''
@@ -30,59 +76,34 @@ export default function Hero() {
           `<span class="inline-block overflow-hidden"><span class="inline-block char-${i}">${char === '.' ? `<span class="text-gold">.</span>` : char}</span></span>`
         ).join('')
         const chars = titleEl.querySelectorAll<HTMLElement>('span > span')
-        tl.fromTo(chars,
-          { y: '120%' },
-          { y: 0, duration: 1.2, stagger: 0.04, ease: 'power4.out' },
-          0.2
-        )
+        tl.fromTo(chars, { y: '120%' }, { y: 0, duration: 1.2, stagger: 0.04, ease: 'power4.out' }, 0.2)
       }
 
       tl.fromTo(eyebrowRef.current,
-        { opacity: 0, y: 16, letterSpacing: '0.2em' },
-        { opacity: 1, y: 0, letterSpacing: '0.45em', duration: 1 },
-        0
-      )
+        { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1 }, 0)
       tl.fromTo(taglineRef.current,
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 1 },
-        1.2
-      )
+        { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1 }, 1.2)
       tl.fromTo(ctaRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.9 },
-        1.5
-      )
+        { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.9 }, 1.5)
       tl.fromTo(scrollRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1 },
-        2.2
-      )
+        { opacity: 0 }, { opacity: 1, duration: 1 }, 2.2)
 
-      // ── Parallax on image ────────────────────────────
       if (imgRef.current) {
         gsap.to(imgRef.current, {
-          yPercent: 18,
-          ease: 'none',
+          yPercent: 18, ease: 'none',
           scrollTrigger: {
             trigger: heroRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
+            start: 'top top', end: 'bottom top', scrub: true,
           },
         })
       }
 
-      // ── Title scale-down on scroll ───────────────────
       if (titleRef.current) {
         gsap.to(titleRef.current, {
-          scale: 0.88,
-          opacity: 0,
-          ease: 'none',
+          scale: 0.88, opacity: 0, ease: 'none',
           scrollTrigger: {
             trigger: heroRef.current,
-            start: 'top top',
-            end: '40% top',
-            scrub: 1,
+            start: 'top top', end: '40% top', scrub: 1,
           },
         })
       }
@@ -93,31 +114,26 @@ export default function Hero() {
 
   return (
     <section ref={heroRef} className="relative h-screen min-h-[680px] flex items-center justify-center overflow-hidden">
-      {/*
-        ── VIDÉOS RUNWAY ─────────────────────────────────────────────────
-        Pour passer en local : mets tes MP4 dans /public/videos/
-        et remplace les <source> par :
-          <source src="/videos/hero-1.mp4" type="video/mp4" />
-          <source src="/videos/hero-2.mp4" type="video/mp4" />
-          <source src="/videos/hero-3.mp4" type="video/mp4" />
-        ─────────────────────────────────────────────────────────────────
-      */}
 
-      {/* Background video — opacité basse, fond d'ambiance cinématographique */}
+      {/* Vidéos en crossfade */}
       <div ref={imgRef} className="absolute inset-0 scale-105">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.45 }}
-        >
-          <source src="/videos/hero-1.mp4" type="video/mp4" />
-        </video>
+        {VIDEOS.map((src, i) => (
+          <video
+            key={src}
+            ref={i === 0 ? vid0Ref : vid1Ref}
+            muted
+            loop={false}
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ opacity: 0, transition: 'opacity 1.5s ease' }}
+          >
+            <source src={src} type="video/mp4" />
+          </video>
+        ))}
       </div>
 
-      {/* Layered overlays — plus denses pour laisser la vidéo en fond subtil */}
+      {/* Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/40 to-ink/80" />
       <div className="absolute inset-0"
         style={{ background: 'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, rgba(12,11,9,0.65) 100%)' }}
@@ -178,3 +194,5 @@ export default function Hero() {
     </section>
   )
 }
+
+
