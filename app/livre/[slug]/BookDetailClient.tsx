@@ -162,8 +162,8 @@ export default function BookDetailClient({ book, paragraphs }: Props) {
             {/* Direct order */}
             <p className="animate-item font-sans text-[11px] text-ink/25 leading-relaxed border-t border-border pt-6">
               Commande directe :{' '}
-              <a href="mailto:info@jabrilia.com" className="text-gold/60 hover:text-gold transition-colors">
-                info@jabrilia.com
+              <a href="mailto:facturation@jabrilia.com" className="text-gold/60 hover:text-gold transition-colors">
+                facturation@jabrilia.com
               </a>
             </p>
           </div>
