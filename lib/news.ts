@@ -18,16 +18,9 @@ export const news: NewsItem[] = [
   },
   {
     id: '2',
-    date: 'Mars 2026',
+    date: 'Juin 2026',
     category: 'Sortie',
     title: 'Du chaos naît une étoile — disponible en juin 2026',
     excerpt: 'Le nouveau livre de Steve Moradel sortira en juin 2026. Une exploration intime des chemins de transformation, entre chaos et renaissance.',
-  },
-  {
-    id: '3',
-    date: 'Février 2026',
-    category: 'Partenariat',
-    title: 'Jabrilia Éditions rejoint le réseau des librairies indépendantes',
-    excerpt: 'Nous sommes fiers d\'annoncer notre partenariat avec un réseau de librairies indépendantes françaises pour une diffusion plus large de nos titres.',
   },
 ]
