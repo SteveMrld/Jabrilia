@@ -13,7 +13,7 @@ export default function ContactForm() {
     const sujet = data.get('sujet') as string
     const message = data.get('message') as string
 
-    window.location.href = `mailto:info@jabrilia.com?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(
+    window.location.href = `mailto:contact@jabrilia.com?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(
       `De : ${nom} <${email}>\n\n${message}`
     )}`
     setSent(true)
