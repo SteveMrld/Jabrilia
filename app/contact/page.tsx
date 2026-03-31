@@ -49,10 +49,10 @@ export default function ContactPage() {
               <div>
                 <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-gold mb-5">Email</p>
                 <a
-                  href="mailto:facturation@jabrilia.com"
+                  href="mailto:info@jabrilia.com"
                   className="font-sans text-paper/50 hover:text-gold transition-colors duration-300 text-sm"
                 >
-                  facturation@jabrilia.com
+                  info@jabrilia.com
                 </a>
               </div>
 

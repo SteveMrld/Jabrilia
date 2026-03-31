@@ -46,10 +46,10 @@ export default function Footer() {
               75015 Paris, France
               <br /><br />
               <a
-                href="mailto:facturation@jabrilia.com"
+                href="mailto:info@jabrilia.com"
                 className="hover:text-gold transition-colors duration-300"
               >
-                facturation@jabrilia.com
+                info@jabrilia.com
               </a>
             </address>
           </div>

@@ -122,10 +122,10 @@ export default function Nav() {
           </Link>
         ))}
         <a
-          href="mailto:facturation@jabrilia.com"
+          href="mailto:info@jabrilia.com"
           className="mt-8 font-sans text-xs tracking-[0.25em] uppercase text-paper/40 hover:text-gold transition-colors"
         >
-          facturation@jabrilia.com
+          info@jabrilia.com
         </a>
       </div>
     </>
