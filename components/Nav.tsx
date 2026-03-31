@@ -65,7 +65,7 @@ export default function Nav() {
                 key={link.href}
                 href={link.href}
                 className={`relative font-sans text-[11px] tracking-[0.18em] uppercase transition-colors duration-300 group ${
-                  pathname === link.href ? 'text-gold' : 'text-paper/55 hover:text-paper'
+                  pathname === link.href ? 'text-gold' : 'text-paper hover:text-gold'
                 }`}
               >
                 {link.label}

@@ -8,10 +8,8 @@ import { Book } from '@/lib/books'
 import BookCard from '@/components/BookCard'
 
 export default function AnimatedBookCard({ book }: { book: Book }) {
-  // Si le livre n'est pas disponible → mécanique flou universelle via BookCard
-  if (book.release !== 'Disponible') {
-    return <BookCard book={book} />
-  }
+  // Sur la homepage on affiche toujours normalement — pas de flou
+  // Le flou est uniquement dans le catalogue (BookCard)
 
   const cardRef = useRef<HTMLDivElement>(null)
 
