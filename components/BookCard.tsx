@@ -3,9 +3,9 @@ import { Book } from '@/lib/books'
 import Link from 'next/link'
 
 export default function BookCard({ book }: { book: Book }) {
-  const isAvailable = book.release === 'Disponible'
+  const isBlurred = book.release.includes('2027') || book.release.includes('2028')
 
-  if (!isAvailable) {
+  if (isBlurred) {
     return (
       <div className='block cursor-default'>
         <div className='relative overflow-hidden aspect-[2/3] mb-4' style={{ background: '#EAE4D8' }}>
@@ -60,7 +60,11 @@ export default function BookCard({ book }: { book: Book }) {
         </div>
       </div>
       <div style={{ marginBottom: '0.375rem' }}>
-        <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '8px', letterSpacing: '0.2em', textTransform: 'uppercase', padding: '0.125rem 0.5rem', background: '#C49A4A', color: '#0C0B09', fontWeight: 600 }}>
+        <span style={{
+          fontFamily: 'DM Sans, sans-serif', fontSize: '8px', letterSpacing: '0.2em',
+          textTransform: 'uppercase', padding: '0.125rem 0.5rem',
+          background: '#C49A4A', color: '#0C0B09', fontWeight: 600
+        }}>
           {book.release}
         </span>
       </div>
