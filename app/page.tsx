@@ -11,8 +11,8 @@ export default function Home() {
   const featured = [
     books.find(b => b.slug === 'sur-les-hauteurs-des-chutes-du-niagara'),
     books.find(b => b.slug === 'du-chaos-nait-une-etoile'),
-    books.find(b => b.slug === 'mon-petit-livre-anti-stress'),
     books.find(b => b.slug === 'les-memoires-reliees'),
+    books.find(b => b.slug === 'les-reparatrices'),
   ].filter(Boolean) as typeof books
 
   return (

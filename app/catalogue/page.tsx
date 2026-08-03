@@ -9,13 +9,13 @@ type Genre = typeof GENRES[number]
 
 // Ordre chronologique, sans Niagara (disponible sur homepage)
 const RELEASE_ORDER = [
-  'du-chaos-nait-une-etoile',        // Juin 2026
-  'mon-petit-livre-anti-stress',     // Août 2026
-  'les-memoires-reliees',            // Novembre 2026
-  'dans-les-failles-du-siecle',      // Avril 2026 (essai)
+  'du-chaos-nait-une-etoile',        // Octobre 2026
+  'les-memoires-reliees',            // Janvier 2027
   'les-reparatrices',                // Février 2027
-  'le-trone-de-cendre',              // 2027
+  'dans-les-failles-du-siecle',      // Juin 2027
+  'mon-petit-livre-anti-stress',     // Août 2027
   'aurora',                          // Novembre 2027
+  'le-trone-de-cendre',              // 2027
   'a-l-ombre-des-oliviers',          // 2027
   'le-temps-des-etincelles',         // 2027
 ]

@@ -10,10 +10,10 @@ export interface NewsItem {
 export const news: NewsItem[] = [
   {
     id: '1',
-    date: 'Juin 2026',
+    date: 'Octobre 2026',
     category: 'Sortie',
-    title: 'Du chaos naît une étoile — disponible en juin 2026',
-    excerpt: 'Le nouveau livre de Steve Moradel sortira en juin 2026. Une exploration intime des chemins de transformation, entre chaos et renaissance.',
+    title: 'Du chaos naît une étoile — disponible en octobre 2026',
+    excerpt: 'Le nouveau livre de Steve Moradel sortira en octobre 2026. Une exploration intime des chemins de transformation, entre chaos et renaissance.',
   },
   {
     id: '2',
