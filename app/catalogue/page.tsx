@@ -81,7 +81,7 @@ export default function CataloguePage() {
       <div style={{ height: '1px', background: 'rgba(12,11,9,0.1)', margin: '0 1.5rem 3rem' }} />
 
       <div style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem', paddingBottom: '8rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', maxWidth: '80rem', margin: '0 auto' }}>
+        <div className='catalogue-grid' style={{ maxWidth: '80rem', margin: '0 auto' }}>
           {filtered.map(book => (
             <BookCard key={book.slug} book={book} />
           ))}
