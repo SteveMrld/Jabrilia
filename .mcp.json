@@ -4,28 +4,13 @@
       "command": "npx",
       "args": ["-y", "@playwright/mcp@latest"]
     },
-    "firecrawl": {
+    "context7": {
       "command": "npx",
-      "args": ["-y", "firecrawl-mcp"],
-      "env": {
-        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
-      }
+      "args": ["-y", "@upstash/context7-mcp"]
     },
-    "perplexity": {
+    "pollinations": {
       "command": "npx",
-      "args": ["-y", "server-perplexity-ask"],
-      "env": {
-        "PERPLEXITY_API_KEY": "${PERPLEXITY_API_KEY}"
-      }
-    },
-    "minimax": {
-      "command": "npx",
-      "args": ["-y", "minimax-mcp-js"],
-      "env": {
-        "MINIMAX_API_KEY": "${MINIMAX_API_KEY}",
-        "MINIMAX_API_HOST": "https://api.minimaxi.chat",
-        "MINIMAX_RESOURCE_MODE": "url"
-      }
+      "args": ["-y", "@pollinations/model-context-protocol"]
     }
   }
 }
