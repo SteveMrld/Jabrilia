@@ -24,6 +24,9 @@ yarn-error.log*
 .env*.local
 !.env.example
 
+# réglages Claude Code locaux (contiennent les clés API des serveurs MCP)
+.claude/settings.local.json
+
 # vercel
 .vercel
 
