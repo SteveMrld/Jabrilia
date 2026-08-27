@@ -1,0 +1,37 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
+      }
+    },
+    "perplexity": {
+      "command": "npx",
+      "args": ["-y", "server-perplexity-ask"],
+      "env": {
+        "PERPLEXITY_API_KEY": "${PERPLEXITY_API_KEY}"
+      }
+    },
+    "glif": {
+      "command": "npx",
+      "args": ["-y", "@glifxyz/glif-mcp-server"],
+      "env": {
+        "GLIF_API_TOKEN": "${GLIF_API_TOKEN}"
+      }
+    },
+    "higgsfield": {
+      "command": "npx",
+      "args": ["-y", "higgsfield-mcp"],
+      "env": {
+        "HF_API_KEY": "${HF_API_KEY}",
+        "HF_SECRET": "${HF_SECRET}"
+      }
+    }
+  }
+}
