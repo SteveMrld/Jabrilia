@@ -1,10 +1,13 @@
 {
   "extraKnownMarketplaces": {
-    "headroom-marketplace": {
+    "ponytail": {
       "source": {
         "source": "github",
-        "repo": "headroomlabs-ai/headroom"
+        "repo": "DietrichGebert/ponytail"
       }
     }
+  },
+  "enabledPlugins": {
+    "ponytail@ponytail": true
   }
 }
