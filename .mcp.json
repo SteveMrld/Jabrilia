@@ -25,12 +25,13 @@
         "GLIF_API_TOKEN": "${GLIF_API_TOKEN}"
       }
     },
-    "higgsfield": {
+    "minimax": {
       "command": "npx",
-      "args": ["-y", "higgsfield-mcp"],
+      "args": ["-y", "minimax-mcp-js"],
       "env": {
-        "HF_API_KEY": "${HF_API_KEY}",
-        "HF_SECRET": "${HF_SECRET}"
+        "MINIMAX_API_KEY": "${MINIMAX_API_KEY}",
+        "MINIMAX_API_HOST": "https://api.minimaxi.chat",
+        "MINIMAX_RESOURCE_MODE": "url"
       }
     }
   }
